@@ -263,4 +263,16 @@
     <string name="RemindTodayAt">\'Отправить сегодня в\' HH:mm</string>
     <string name="RemindDayAt">\'Отправить\' d MMM \'в\' HH:mm</string>
     <string name="RemindDayYearAt">\'Напомнить\' d MMM yyyy \'в\' HH:mm</string>
+    <string name="YooGram">YooGram</string>
+    <string name="YooModeration">Модерация</string>
+    <string name="YooQuickModeration">Быстрые действия модерации</string>
+    <string name="YooQuickModerationInfo">Добавляет пункт «Модерация» в меню сообщения в супергруппах, где у вас есть право банить: мут на 10 минут, 1 час, 1 день или бан.</string>
+    <string name="YooMute10Min">Мут на 10 минут</string>
+    <string name="YooMute1Hour">Мут на 1 час</string>
+    <string name="YooMute1Day">Мут на 1 день</string>
+    <string name="YooBan">Бан</string>
+    <string name="YooBanConfirm">Забанить %1$s из этой группы?</string>
+    <string name="YooMuted">%1$s замьючен(а).</string>
+    <string name="YooBanned">%1$s забанен(а).</string>
+    <string name="SettingsYooGramInfo">Значки и модерация</string>
 </resources>

@@ -18924,7 +18924,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (adminString != null) {
                 nameWidth -= dp(8);
             }
-            nameStringFinal = TextUtils.ellipsize(nameStringFinal, Theme.chat_namePaint, nameWidth + additionalWidth - (viaBot ? viaWidth : 0), TextUtils.TruncateAt.END);
+            if (currentUser != null && needAuthorName && messageObject.customName == null && !viaBot && org.telegram.yoogram.YooBadges.get(currentUser.id) != null) {
+                nameStringFinal = org.telegram.yoogram.YooBadges.appendBadge(nameStringFinal, currentUser.id, Theme.chat_namePaint, nameWidth + additionalWidth);
+            } else {
+                nameStringFinal = TextUtils.ellipsize(nameStringFinal, Theme.chat_namePaint, nameWidth + additionalWidth - (viaBot ? viaWidth : 0), TextUtils.TruncateAt.END);
+            }
 
             if (viaGuestBot) {
                 int colorKey;

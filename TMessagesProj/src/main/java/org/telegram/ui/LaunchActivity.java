@@ -6963,6 +6963,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     protected void onResume() {
         super.onResume();
+        org.telegram.yoogram.YooBadges.refreshIfNeeded();
         isResumed = true;
         pipActivityHandler.onResume();
         if (onResumeStaticCallback != null) {

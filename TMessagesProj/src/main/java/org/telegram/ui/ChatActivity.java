@@ -1247,6 +1247,7 @@ public class ChatActivity extends BaseFragment implements
 
     public final static int OPTION_VIEW_STATISTICS = 115;
     public final static int OPTION_WELCOME_REVERT = 116;
+    public final static int OPTION_YOO_MODERATION = 200;
 
     private final static int[] allowedNotificationsDuringChatListAnimations = new int[]{
             NotificationCenter.messagesRead,
@@ -19541,10 +19542,10 @@ public class ChatActivity extends BaseFragment implements
                 if (!TextUtils.isEmpty(currentUser.phone)) {
                     avatarContainer.setTitle(PhoneFormat.getInstance().format("+" + currentUser.phone), currentUser.scam, currentUser.fake, currentUser.verified, getMessagesController().isPremiumUser(currentUser), currentUser.emoji_status, animated);
                 } else {
-                    avatarContainer.setTitle(AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(currentUser))), currentUser.scam, currentUser.fake, currentUser.verified, getMessagesController().isPremiumUser(currentUser), currentUser.emoji_status, animated);
+                    avatarContainer.setTitle(org.telegram.yoogram.YooBadges.appendBadge(AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(currentUser))), currentUser.id), currentUser.scam, currentUser.fake, currentUser.verified, getMessagesController().isPremiumUser(currentUser), currentUser.emoji_status, animated);
                 }
             } else {
-                avatarContainer.setTitle(AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(currentUser))), currentUser.scam, currentUser.fake, currentUser.verified, getMessagesController().isPremiumUser(currentUser), !MessagesController.isSupportUser(currentUser) ? currentUser.emoji_status : null, animated);
+                avatarContainer.setTitle(org.telegram.yoogram.YooBadges.appendBadge(AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(currentUser))), currentUser.id), currentUser.scam, currentUser.fake, currentUser.verified, getMessagesController().isPremiumUser(currentUser), !MessagesController.isSupportUser(currentUser) ? currentUser.emoji_status : null, animated);
             }
         }
         setParentActivityTitle(avatarContainer.getTitleTextView().getText());
@@ -33339,6 +33340,10 @@ public class ChatActivity extends BaseFragment implements
                 });
                 break;
             }
+            case OPTION_YOO_MODERATION: {
+                org.telegram.yoogram.YooModeration.showMenu(currentAccount, this, currentChat, selectedObject);
+                break;
+            }
             case OPTION_DELETE: {
                 if (getParentActivity() == null) {
                     selectedObject = null;
@@ -46208,6 +46213,11 @@ public class ChatActivity extends BaseFragment implements
                         options.add(OPTION_REPORT_CHAT);
                         icons.add(R.drawable.msg_report);
                     }
+                }
+                if (chatMode == MODE_DEFAULT && org.telegram.yoogram.YooModeration.canModerate(currentAccount, currentChat, selectedObject)) {
+                    items.add(LocaleController.getString(R.string.YooModeration));
+                    options.add(OPTION_YOO_MODERATION);
+                    icons.add(R.drawable.msg_block2);
                 }
                 if (message.canDeleteMessage(chatMode == MODE_SCHEDULED, currentChat) && (threadMessageObjects == null || !threadMessageObjects.contains(message))) {
                     items.add(LocaleController.getString(chatMode == MODE_SAVED && threadMessageId != getUserConfig().getClientUserId() ? R.string.Remove : R.string.Delete));
