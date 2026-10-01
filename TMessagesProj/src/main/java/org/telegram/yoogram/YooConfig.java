@@ -8,6 +8,9 @@ public final class YooConfig {
     /** Ed25519 public key (32 bytes, base64) shown at the bottom of the badge server admin page. */
     public static final String BADGES_PUBLIC_KEY = "";
 
+    /** Where the "Update app" buttons lead (instead of the official store pages). */
+    public static final String UPDATE_URL = "https://t.me/gooseoma_news";
+
     private YooConfig() {
     }
 }
