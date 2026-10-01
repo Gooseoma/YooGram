@@ -29,6 +29,21 @@ public final class SharedSettings {
     public static final EnumSetting<RoundVideoSession.CameraFacing> roundVideoLastCamera =
         EnumSetting.of("round_video_last_camera", RoundVideoSession.CameraFacing.FRONT);
 
+    public static final BooleanSetting yooQuickModeration =
+        BooleanSetting.of("yoo_quick_moderation", true);
+
+    public static final StringSetting yooBadgesPayload =
+        StringSetting.of("yoo_badges_payload", null);
+
+    public static final StringSetting yooBadgesEtag =
+        StringSetting.of("yoo_badges_etag", null);
+
+    public static final IntSetting yooBadgesVersion =
+        IntSetting.of("yoo_badges_version", 0);
+
+    public static final LongSetting yooBadgesLastUpdate =
+        LongSetting.of("yoo_badges_last_update", 0L);
+
     private SharedSettings() {
     }
 }

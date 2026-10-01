@@ -637,6 +637,9 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                     name = Emoji.replaceEmoji(name, nameTextView.getPaint().getFontMetricsInt(), false);
                 } catch (Exception ignore) {}
             }
+            if (currentUser != null) {
+                name = org.telegram.yoogram.YooBadges.appendBadge(name, currentUser.id);
+            }
             nameTextView.setText(name);
         } else {
             if (currentUser != null) {
@@ -654,6 +657,9 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 try {
                     name = Emoji.replaceEmoji(name, nameTextView.getPaint().getFontMetricsInt(), false);
                 } catch (Exception ignore) {}
+            }
+            if (currentUser != null) {
+                name = org.telegram.yoogram.YooBadges.appendBadge(name, currentUser.id);
             }
             nameTextView.setText(name);
         }

@@ -11235,4 +11235,16 @@
     <string name="RoundVideoComposition">Composition</string>
     <string name="RoundVideoCompositionEnabled">Round video styling</string>
     <string name="RoundVideoCompositionInfo">Disable styling to record a plain square without outside-circle blur, dimming or Telegram overlays.</string>
+    <string name="YooGram">YooGram</string>
+    <string name="YooModeration">Moderation</string>
+    <string name="YooQuickModeration">Quick moderation actions</string>
+    <string name="YooQuickModerationInfo">Adds a Moderation item to the message menu in supergroups where you can ban users: mute for 10 minutes, 1 hour, 1 day, or ban.</string>
+    <string name="YooMute10Min">Mute for 10 minutes</string>
+    <string name="YooMute1Hour">Mute for 1 hour</string>
+    <string name="YooMute1Day">Mute for 1 day</string>
+    <string name="YooBan">Ban</string>
+    <string name="YooBanConfirm">Ban %1$s from this group?</string>
+    <string name="YooMuted">%1$s muted.</string>
+    <string name="YooBanned">%1$s banned.</string>
+    <string name="SettingsYooGramInfo">Badges and moderation</string>
 </resources>
