@@ -81,6 +81,7 @@ android {
             jniDebuggable false
             signingConfig signingConfigs.release
             applicationIdSuffix ".web"
+            matchingFallbacks = ['release']
             minifyEnabled true
             shrinkResources true
             multiDexEnabled true
