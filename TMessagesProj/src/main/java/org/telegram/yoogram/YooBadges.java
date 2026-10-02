@@ -74,12 +74,7 @@ public class YooBadges {
         ensureLoaded();
         HashMap<Long, Badge> map = badges;
         Badge badge = map != null ? map.get(userId) : null;
-        if (badge == null) {
-            final int own = SharedSettings.yooMyBadge.get();
-            if (own > 0 && own <= PRESETS.length && userId == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
-                badge = PRESETS[own - 1];
-            }
-        }
+        // Badges come only from the signed server list.
         return badge;
     }
 
