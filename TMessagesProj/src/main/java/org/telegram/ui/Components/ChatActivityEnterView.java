@@ -12582,9 +12582,9 @@ public class ChatActivityEnterView extends FrameLayout implements
         checkChannelRights();
     }
 
-    @Override
     private boolean yooStickerConfirmed;
 
+    @Override
     public void onStickerSelected(TLRPC.Document sticker, String query, Object parent, MessageObject.SendAnimationData sendAnimationData, boolean clearsInputField, boolean notify, int scheduleDate, int scheduleRepeatPeriod) {
         if (isLiveComment) return;
         if (org.telegram.utils.settings.SharedSettings.yooConfirmSticker.get() && !yooStickerConfirmed && parentActivity != null) {
