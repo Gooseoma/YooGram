@@ -11311,4 +11311,7 @@
     <string name="YooNoReplyEmoji">Disable reply emoji pattern</string>
     <string name="YooNoReplyColors">Default reply colors</string>
     <string name="YooHideFolderCounters">Hide folder counters</string>
+    <string name="YooConfirmSticker">Confirm before sending stickers</string>
+    <string name="YooConfirmStickerTitle">Send sticker?</string>
+    <string name="YooConfirmStickerText">Do you want to send this sticker?</string>
 </resources>

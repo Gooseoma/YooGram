@@ -339,4 +339,7 @@
     <string name="YooNoReplyEmoji">Отключить узор эмодзи в ответах</string>
     <string name="YooNoReplyColors">Обычные цвета ответов</string>
     <string name="YooHideFolderCounters">Скрыть счётчики в папках</string>
+    <string name="YooConfirmSticker">Подтверждать отправку стикеров</string>
+    <string name="YooConfirmStickerTitle">Отправить стикер?</string>
+    <string name="YooConfirmStickerText">Вы хотите отправить этот стикер?</string>
 </resources>
