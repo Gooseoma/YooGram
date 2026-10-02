@@ -22,6 +22,7 @@ public class YooAppearanceSettings extends YooSettingsPage {
         rows.add(Row.toggle(LocaleController.getString(R.string.YooForceSnow), SharedSettings.yooForceSnow));
         rows.add(Row.toggleRestart(LocaleController.getString(R.string.YooHeaderCenter), SharedSettings.yooHeaderCenter));
         rows.add(Row.toggleRestart(LocaleController.getString(R.string.YooHideStories), SharedSettings.yooHideStories));
+        rows.add(Row.toggleRestart(LocaleController.getString(R.string.YooHideFolderCounters), SharedSettings.yooHideFolderCounters));
         rows.add(Row.choice(
             LocaleController.getString(R.string.YooHeaderText),
             SharedSettings.yooHeaderText,

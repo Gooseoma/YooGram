@@ -338,4 +338,5 @@
     <string name="YooAvatarRoundingInfo">100% это круг, 0% квадрат. Применяется к загруженным фото, заглушки с буквами остаются круглыми. Чтобы увидеть изменение, откройте экран заново.</string>
     <string name="YooNoReplyEmoji">Отключить узор эмодзи в ответах</string>
     <string name="YooNoReplyColors">Обычные цвета ответов</string>
+    <string name="YooHideFolderCounters">Скрыть счётчики в папках</string>
 </resources>
