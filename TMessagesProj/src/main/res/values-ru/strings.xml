@@ -347,4 +347,5 @@
     <string name="YooDeletedLabel">удалено</string>
     <string name="YooUnrestrict">Снять мут / бан</string>
     <string name="YooUnrestricted">Ограничения сняты: %1$s</string>
+    <string name="YooNoFolderSwipe">Отключить свайп между папками</string>
 </resources>

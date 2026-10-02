@@ -144,6 +144,9 @@ public final class SharedSettings {
     public static final BooleanSetting yooNoSwipeReply =
         BooleanSetting.of("yoo_no_swipe_reply", false);
 
+    public static final BooleanSetting yooNoFolderSwipe =
+        BooleanSetting.of("yoo_no_folder_swipe", false);
+
     private SharedSettings() {
     }
 }
