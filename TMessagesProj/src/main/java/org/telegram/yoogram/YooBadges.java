@@ -187,6 +187,15 @@ public class YooBadges {
             SharedSettings.yooBadgesEtag.set(connection.getHeaderField("ETag"));
             SharedSettings.yooBadgesLastUpdate.set(System.currentTimeMillis());
             badges = parsed;
+            org.telegram.messenger.AndroidUtilities.runOnUIThread(() -> {
+                for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+                    if (UserConfig.getInstance(a).isClientActivated()) {
+                        org.telegram.messenger.NotificationCenter.getInstance(a).postNotificationName(
+                            org.telegram.messenger.NotificationCenter.updateInterfaces,
+                            org.telegram.messenger.MessagesController.UPDATE_MASK_NAME);
+                    }
+                }
+            });
         } finally {
             connection.disconnect();
         }
