@@ -26,6 +26,7 @@ public class YooChatsSettings extends YooSettingsPage {
         rows.add(Row.toggle(LocaleController.getString(R.string.YooEditedIcon), SharedSettings.yooEditedIcon));
         rows.add(Row.toggle(LocaleController.getString(R.string.YooHideStickerTime), SharedSettings.yooHideStickerTime));
         rows.add(Row.toggle(LocaleController.getString(R.string.YooNoTail), SharedSettings.yooNoTail));
+        rows.add(Row.toggle(LocaleController.getString(R.string.YooOnlineDot), SharedSettings.yooOnlineDot));
         rows.add(Row.choice(
             LocaleController.getString(R.string.YooStickerSize),
             SharedSettings.yooStickerSize,

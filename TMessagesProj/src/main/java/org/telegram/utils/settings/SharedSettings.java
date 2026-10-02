@@ -71,6 +71,21 @@ public final class SharedSettings {
     public static final BooleanSetting yooForceGlass =
         BooleanSetting.of("yoo_force_glass", true);
 
+    /** Avatar corner rounding: 0 = square, 100 = circle. */
+    public static final IntSetting yooAvatarRounding =
+        IntSetting.of("yoo_avatar_rounding", 100);
+
+    /** Apply the avatar rounding to every avatar, including forums. */
+    public static final BooleanSetting yooUnifiedRounding =
+        BooleanSetting.of("yoo_unified_rounding", false);
+
+    public static final BooleanSetting yooOnlineDot =
+        BooleanSetting.of("yoo_online_dot", false);
+
+    /** Locally chosen badge for the own account: 0 = none, otherwise 1-based index into YooBadges.PRESETS. */
+    public static final IntSetting yooMyBadge =
+        IntSetting.of("yoo_my_badge", 0);
+
     public static final BooleanSetting yooForceSnow =
         BooleanSetting.of("yoo_force_snow", false);
 

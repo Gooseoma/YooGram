@@ -40,6 +40,13 @@ public class YooAppearanceSettings extends YooSettingsPage {
             rows.add(Row.info(LocaleController.getString(R.string.YooLiquidGlassInfo)));
         }
         rows.add(Row.toggle(LocaleController.getString(R.string.YooHideChatHeaderBg), SharedSettings.yooHideChatHeaderBg));
+        rows.add(Row.choice(
+            LocaleController.getString(R.string.YooAvatarRounding),
+            SharedSettings.yooAvatarRounding,
+            new CharSequence[]{"0%", "25%", "50%", "75%", "100%"},
+            new int[]{0, 25, 50, 75, 100}));
+        rows.add(Row.toggle(LocaleController.getString(R.string.YooUnifiedRounding), SharedSettings.yooUnifiedRounding));
+        rows.add(Row.info(LocaleController.getString(R.string.YooAvatarRoundingInfo)));
         rows.add(Row.toggleCustom(
             LocaleController.getString(R.string.YooSystemEmoji),
             () -> SharedConfig.useSystemEmoji,

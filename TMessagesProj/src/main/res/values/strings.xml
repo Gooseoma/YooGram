@@ -11302,4 +11302,10 @@
     <string name="YooHideChatHeaderBg">Hide chat header background</string>
     <string name="YooNoTail">Remove message tails</string>
     <string name="YooStickerSize">Sticker size</string>
+    <string name="YooMyBadge">My badge</string>
+    <string name="YooBadgeNone">None</string>
+    <string name="YooOnlineDot">Online indicator on avatars</string>
+    <string name="YooAvatarRounding">Avatar rounding</string>
+    <string name="YooUnifiedRounding">Same shape for all avatars</string>
+    <string name="YooAvatarRoundingInfo">100% is a circle, 0% is a square. Applies to loaded photos; placeholders with initials stay round. Re-open the screen to see the change.</string>
 </resources>

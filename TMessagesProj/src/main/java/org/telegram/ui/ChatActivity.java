@@ -6373,6 +6373,9 @@ public class ChatActivity extends BaseFragment implements
                             canvas.translate(dp(24) * getSideMenuAlpha(), 0f);
                         }
                         imageReceiver.draw(canvas);
+                        if (org.telegram.utils.settings.SharedSettings.yooOnlineDot.get()) {
+                            org.telegram.yoogram.YooAppearance.drawOnlineDot(canvas, imageReceiver, currentAccount, message);
+                        }
                         canvas.restore();
 
                         if (!replaceAnimation && child.getTranslationY() != 0) {

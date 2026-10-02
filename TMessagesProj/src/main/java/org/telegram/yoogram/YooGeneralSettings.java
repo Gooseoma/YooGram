@@ -37,6 +37,15 @@ public class YooGeneralSettings extends YooSettingsPage {
         rows.add(Row.info(LocaleController.getString(R.string.YooTransferInfo)));
 
         rows.add(Row.header(LocaleController.getString(R.string.YooSecProfile)));
+        rows.add(Row.choice(
+            LocaleController.getString(R.string.YooMyBadge),
+            SharedSettings.yooMyBadge,
+            new CharSequence[]{
+                LocaleController.getString(R.string.YooBadgeNone),
+                "\u2B50", "\uD83D\uDD25", "\uD83D\uDC8E", "\uD83D\uDC51", "\uD83D\uDC31",
+                "YooGram", "Developer"
+            },
+            new int[]{0, 1, 2, 3, 4, 5, 6, 7}));
         rows.add(Row.toggle(LocaleController.getString(R.string.YooHidePhone), SharedSettings.yooHidePhone));
         rows.add(Row.info(LocaleController.getString(R.string.YooHidePhoneInfo)));
     }
