@@ -11310,4 +11310,5 @@
     <string name="YooAvatarRoundingInfo">100% is a circle, 0% is a square. Applies to loaded photos; placeholders with initials stay round. Re-open the screen to see the change.</string>
     <string name="YooNoReplyEmoji">Disable reply emoji pattern</string>
     <string name="YooNoReplyColors">Default reply colors</string>
+    <string name="YooHideFolderCounters">Hide folder counters</string>
 </resources>
