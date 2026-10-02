@@ -344,4 +344,7 @@
     <string name="YooConfirmStickerText">Вы хотите отправить этот стикер?</string>
     <string name="YooNoDoubleTap">Отключить реакцию двойным нажатием</string>
     <string name="YooNoSwipeReply">Отключить свайп для ответа</string>
+    <string name="YooDeletedLabel">удалено</string>
+    <string name="YooUnrestrict">Снять мут / бан</string>
+    <string name="YooUnrestricted">Ограничения сняты: %1$s</string>
 </resources>

@@ -3,6 +3,7 @@ package org.telegram.yoogram;
 import android.content.SharedPreferences;
 
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.utils.settings.SharedSettings;
 
 import java.util.ArrayList;
@@ -75,5 +76,21 @@ public final class YooDeleted {
             return false;
         }
         return load().contains(key(account, dialogId, messageId));
+    }
+
+    private static Boolean emojiOk;
+
+    /** Prefix for the time label of a deleted message: wastebasket if the font has it, text otherwise. */
+    public static String marker() {
+        if (emojiOk == null) {
+            boolean ok;
+            try {
+                ok = new android.graphics.Paint().hasGlyph("\uD83D\uDDD1");
+            } catch (Throwable t) {
+                ok = false;
+            }
+            emojiOk = ok;
+        }
+        return emojiOk ? "\uD83D\uDDD1 " : org.telegram.messenger.LocaleController.getString(R.string.YooDeletedLabel) + " ";
     }
 }

@@ -19,6 +19,11 @@ public final class YooBranding {
     private YooBranding() {
     }
 
+    /** The official service chat (777000) is shown under the app name. */
+    public static String userName(org.telegram.tgnet.TLRPC.User user, String name) {
+        return user != null && user.id == 777000 ? "YooGram" : name;
+    }
+
     public static String fix(String value) {
         if (value == null || value.length() < 8) {
             return value;

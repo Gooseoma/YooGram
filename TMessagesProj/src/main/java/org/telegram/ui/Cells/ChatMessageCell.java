@@ -6881,14 +6881,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (messageObject.updateSideMenuEnabled(isSideMenuEnabled)) {
             messageChanged = true;
         }
-        if (messageChanged || dataChanged || groupChanged || pollChanged || widthChanged && messageObject.isPoll() || isPhotoDataChanged(messageObject) || pinnedBottom != bottomNear || pinnedTop != topNear) {
+        if (messageChanged || dataChanged || groupChanged || pollChanged || widthChanged && messageObject.isPoll() || isPhotoDataChanged(messageObject) || pinnedBottom != (bottomNear || org.telegram.utils.settings.SharedSettings.yooNoTail.get()) || pinnedTop != topNear) {
             postRunnableHolder.clear();
 
             if (stickerSetIcons != null) {
                 stickerSetIcons.readyToDie();
             }
             wasPinned = isPinned;
-            pinnedBottom = bottomNear;
+            pinnedBottom = bottomNear || org.telegram.utils.settings.SharedSettings.yooNoTail.get();
             this.firstInChat = firstInChat;
             this.lastInChatList = lastInChatList;
             pinnedTop = topNear;
@@ -18495,7 +18495,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             timeString = LocaleController.getInstance().getFormatterDay().format((long) (messageObject.messageOwner.date) * 1000);
         }
         if (org.telegram.yoogram.YooDeleted.isDeleted(currentAccount, currentMessageObject.getDialogId(), currentMessageObject.getId())) {
-            timeString = "\uD83D\uDDD1 " + timeString;
+            timeString = org.telegram.yoogram.YooDeleted.marker() + timeString;
         }
         if (currentMessageObject.messageOwner.video_processing_pending) {
             timeString = formatString(R.string.ScheduledTimeApprox, timeString);
