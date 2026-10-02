@@ -20904,7 +20904,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         boolean forward = x >= width / 3 * 2;
         long current = getCurrentVideoPosition();
         long total = getVideoDuration();
-        return current != C.TIME_UNSET && total > 15 * 1000 && (!forward || total - current > 10000);
+        return current != C.TIME_UNSET && total > 15 * 1000 && (!forward || total - current > org.telegram.utils.settings.SharedSettings.yooSeekSeconds.get() * 1000L);
     }
 
     long totalRewinding;
@@ -20912,6 +20912,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     @Override
     public boolean onDoubleTap(MotionEvent e) {
         if ((videoPlayer != null || photoViewerWebView != null && photoViewerWebView.isControllable()) && videoPlayerControlVisible) {
+            final long yooSeekMs = org.telegram.utils.settings.SharedSettings.yooSeekSeconds.get() * 1000L;
             long current = getCurrentVideoPosition();
             long total = getVideoDuration();
             float x = e.getX();
@@ -20920,16 +20921,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (canDoubleTapSeekVideo(e)) {
                 long old = current;
                 if (x >= width / 3 * 2) {
-                    current += 10000;
+                    current += yooSeekMs;
                 } else if (x < width / 3) {
-                    current -= 10000;
+                    current -= yooSeekMs;
                 }
                 if (old != current) {
                     boolean apply = true;
                     if (current > total) {
                         current = total;
                     } else if (current < 0) {
-                        if (current < -9000) {
+                        if (current < -(yooSeekMs - 1000)) {
                             apply = false;
                         }
                         current = 0;
@@ -20937,7 +20938,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     if (apply) {
                         videoForwardDrawable.setOneShootAnimation(true);
                         videoForwardDrawable.setLeftSide(x < width / 3);
-                        videoForwardDrawable.addTime(10000);
+                        videoForwardDrawable.addTime((int) yooSeekMs);
                         seekVideoOrWebTo(current);
                         containerView.invalidate();
                         videoPlayerSeekbar.setProgress(current / (float) total, true);

@@ -533,7 +533,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         titleView.setText(UserObject.getUserName(user));
         final StringBuilder sb = new StringBuilder();
         if (user != null) {
-            sb.append(PhoneFormat.getInstance().format("+" + user.phone));
+            sb.append(org.telegram.yoogram.YooPrivacy.phone(PhoneFormat.getInstance().format("+" + user.phone)));
         }
         final String username = UserObject.getPublicUsername(user);
         if (username != null) {
@@ -677,7 +677,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             items.add(UItem.asShadow(null));
         }
 
-        items.add(SettingCell.Factory.of(25, IconBackgroundColors.ORANGE_DEEP.top, IconBackgroundColors.ORANGE_DEEP.bottom, R.drawable.settings_chat, getString(R.string.YooGram), getString(R.string.SettingsYooGramInfo)));
+        items.add(SettingCell.Factory.of(25, 0xFF3A1A7A, 0xFF1A0845, R.drawable.ic_launcher_dr, getString(R.string.YooGram), getString(R.string.SettingsYooGramInfo)));
         items.add(UItem.asShadow(null));
 
         if (accountNumbers.size() > 0) {
