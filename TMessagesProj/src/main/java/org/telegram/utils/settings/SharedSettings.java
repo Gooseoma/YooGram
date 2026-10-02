@@ -138,6 +138,9 @@ public final class SharedSettings {
     public static final BooleanSetting yooConfirmSticker =
         BooleanSetting.of("yoo_confirm_sticker", false);
 
+    public static final BooleanSetting yooNoDoubleTapReaction =
+        BooleanSetting.of("yoo_no_double_tap_reaction", false);
+
     private SharedSettings() {
     }
 }

@@ -342,4 +342,5 @@
     <string name="YooConfirmSticker">Подтверждать отправку стикеров</string>
     <string name="YooConfirmStickerTitle">Отправить стикер?</string>
     <string name="YooConfirmStickerText">Вы хотите отправить этот стикер?</string>
+    <string name="YooNoDoubleTap">Отключить реакцию двойным нажатием</string>
 </resources>
