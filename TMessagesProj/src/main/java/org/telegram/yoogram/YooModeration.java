@@ -60,7 +60,8 @@ public final class YooModeration {
             LocaleController.getString(R.string.YooMute10Min),
             LocaleController.getString(R.string.YooMute1Hour),
             LocaleController.getString(R.string.YooMute1Day),
-            LocaleController.getString(R.string.YooBan)
+            LocaleController.getString(R.string.YooBan),
+            LocaleController.getString(R.string.YooUnrestrict)
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(LocaleController.getString(R.string.YooModeration));
@@ -75,8 +76,11 @@ public final class YooModeration {
                 case 2:
                     mute(account, fragment, chat, user, 86400);
                     break;
-                default:
+                case 3:
                     confirmBan(account, fragment, chat, user);
+                    break;
+                default:
+                    unrestrict(account, fragment, chat, user);
                     break;
             }
         });
@@ -117,6 +121,13 @@ public final class YooModeration {
         rights.send_docs = true;
         rights.embed_links = true;
         send(account, fragment, chat, user, rights, LocaleController.formatString(R.string.YooMuted, UserObject.getUserName(user)));
+    }
+
+    private static void unrestrict(int account, BaseFragment fragment, TLRPC.Chat chat, TLRPC.User user) {
+        // Empty rights with until_date 0 lift both mute and ban.
+        TLRPC.TL_chatBannedRights rights = new TLRPC.TL_chatBannedRights();
+        rights.until_date = 0;
+        send(account, fragment, chat, user, rights, LocaleController.formatString(R.string.YooUnrestricted, UserObject.getUserName(user)));
     }
 
     private static void ban(int account, BaseFragment fragment, TLRPC.Chat chat, TLRPC.User user) {

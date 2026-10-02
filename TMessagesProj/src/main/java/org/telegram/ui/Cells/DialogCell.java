@@ -1129,7 +1129,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 if (UserObject.isDeleted(currentUser)) {
                     title = getString(R.string.HiddenName);
                 } else {
-                    title = AndroidUtilities.escape(ContactsController.formatName(currentUser.first_name, currentUser.last_name).replace('\n', ' '));
+                    title = AndroidUtilities.escape(org.telegram.yoogram.YooBranding.userName(currentUser, ContactsController.formatName(currentUser.first_name, currentUser.last_name)).replace('\n', ' '));
                 }
             } else {
                 continue;
@@ -1189,7 +1189,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 if (UserObject.isDeleted(currentUser)) {
                     title = getString(R.string.HiddenName);
                 } else {
-                    title = AndroidUtilities.escape(ContactsController.formatName(currentUser.first_name, currentUser.last_name).replace('\n', ' '));
+                    title = AndroidUtilities.escape(org.telegram.yoogram.YooBranding.userName(currentUser, ContactsController.formatName(currentUser.first_name, currentUser.last_name)).replace('\n', ' '));
                 }
             } else {
                 continue;
