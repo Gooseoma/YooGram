@@ -15,6 +15,10 @@ public class YooChatsSettings extends YooSettingsPage {
 
     @Override
     protected void buildRows(ArrayList<Row> rows) {
+        rows.add(Row.header(LocaleController.getString(R.string.YooPreview)));
+        rows.add(Row.preview());
+        rows.add(Row.shadow());
+
         rows.add(Row.header(LocaleController.getString(R.string.YooSecChat)));
         rows.add(Row.toggle(LocaleController.getString(R.string.YooQuickModeration), SharedSettings.yooQuickModeration));
         rows.add(Row.info(LocaleController.getString(R.string.YooQuickModerationInfo)));
