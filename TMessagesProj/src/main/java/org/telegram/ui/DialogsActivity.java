@@ -12747,7 +12747,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
         boolean onlySelfStories = !isArchive() && getStoriesController().hasOnlySelfStories();
         boolean newVisibility;
-        if (communityId != 0 || org.telegram.utils.settings.SharedSettings.yooHideStories.get()) {
+        if (org.telegram.utils.settings.SharedSettings.yooHideStories.get()) {
+            onlySelfStories = false;
+            newVisibility = false;
+        } else if (communityId != 0) {
             newVisibility = false;
         } else if (isArchive()) {
             newVisibility = !getStoriesController().getHiddenList().isEmpty();
@@ -12755,11 +12758,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             newVisibility = !onlySelfStories && getStoriesController().hasStories();
             onlySelfStories = getStoriesController().hasOnlySelfStories();
         }
-        if (org.telegram.utils.settings.SharedSettings.yooHideStories.get()) {
-            onlySelfStories = false;
-            newVisibility = false;
-        }
-
         hasOnlySlefStories = onlySelfStories;
 
         boolean oldStoriesCellVisibility = dialogStoriesCellVisible;
