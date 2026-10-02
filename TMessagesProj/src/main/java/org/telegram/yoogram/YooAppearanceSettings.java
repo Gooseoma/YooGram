@@ -39,6 +39,7 @@ public class YooAppearanceSettings extends YooSettingsPage {
             rows.add(Row.toggleRestart(LocaleController.getString(R.string.YooLiquidGlass), SharedSettings.yooForceGlass));
             rows.add(Row.info(LocaleController.getString(R.string.YooLiquidGlassInfo)));
         }
+        rows.add(Row.toggle(LocaleController.getString(R.string.YooHideChatHeaderBg), SharedSettings.yooHideChatHeaderBg));
         rows.add(Row.toggleCustom(
             LocaleController.getString(R.string.YooSystemEmoji),
             () -> SharedConfig.useSystemEmoji,

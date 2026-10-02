@@ -11297,4 +11297,9 @@
     <string name="YooSeek20">20 seconds</string>
     <string name="YooSecSupport">Support</string>
     <string name="YooGithub">GitHub</string>
+    <string name="YooKeepDeleted">Keep deleted messages</string>
+    <string name="YooKeepDeletedInfo">Messages deleted by other people stay in the chat and are marked with a bin icon next to the time. The mark appears when the chat is reopened or scrolled.</string>
+    <string name="YooHideChatHeaderBg">Hide chat header background</string>
+    <string name="YooNoTail">Remove message tails</string>
+    <string name="YooStickerSize">Sticker size</string>
 </resources>
