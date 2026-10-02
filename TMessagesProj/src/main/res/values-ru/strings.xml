@@ -348,4 +348,9 @@
     <string name="YooUnrestrict">Снять мут / бан</string>
     <string name="YooUnrestricted">Ограничения сняты: %1$s</string>
     <string name="YooNoFolderSwipe">Отключить свайп между папками</string>
+    <string name="YooConfirmCall">Подтверждать звонок</string>
+    <string name="YooConfirmCallTitle">Позвонить?</string>
+    <string name="YooConfirmVideoCallTitle">Видеозвонок?</string>
+    <string name="YooConfirmCallText">Начать звонок?</string>
+    <string name="YooCall">Позвонить</string>
 </resources>
