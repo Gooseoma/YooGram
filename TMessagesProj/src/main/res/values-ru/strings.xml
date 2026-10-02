@@ -330,4 +330,10 @@
     <string name="YooHideChatHeaderBg">Убрать фон заголовка чата</string>
     <string name="YooNoTail">Убрать «хвост» у сообщений</string>
     <string name="YooStickerSize">Размер стикеров</string>
+    <string name="YooMyBadge">Мой значок</string>
+    <string name="YooBadgeNone">Нет</string>
+    <string name="YooOnlineDot">Индикатор онлайна у аватарок</string>
+    <string name="YooAvatarRounding">Закругление аватарок</string>
+    <string name="YooUnifiedRounding">Единая форма для всех аватарок</string>
+    <string name="YooAvatarRoundingInfo">100% это круг, 0% квадрат. Применяется к загруженным фото, заглушки с буквами остаются круглыми. Чтобы увидеть изменение, откройте экран заново.</string>
 </resources>

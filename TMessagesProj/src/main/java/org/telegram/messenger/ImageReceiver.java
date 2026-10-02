@@ -424,7 +424,24 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         setForUserOrChat(object, avatarDrawable, parentObject, false, 0, false);
     }
 
+    private boolean yooAvatar;
+
+    private void yooApplyAvatarRounding() {
+        final int percent = org.telegram.utils.settings.SharedSettings.yooAvatarRounding.get();
+        if (percent >= 100 && !org.telegram.utils.settings.SharedSettings.yooUnifiedRounding.get()) {
+            return;
+        }
+        if (imageW <= 0 || imageH <= 0) {
+            return;
+        }
+        final int radius = Math.round(Math.min(imageW, imageH) / 2f * Math.max(0, Math.min(100, percent)) / 100f);
+        if (roundRadius[0] != radius || roundRadius[1] != radius || roundRadius[2] != radius || roundRadius[3] != radius) {
+            setRoundRadius(radius);
+        }
+    }
+
     public void setForUserOrChat(TLObject object, Drawable avatarDrawable, Object parentObject, boolean animationEnabled, int vectorType, boolean big) {
+        yooAvatar = true;
         if (parentObject == null) {
             parentObject = object;
         }
@@ -1880,6 +1897,9 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     }
 
     public boolean draw(Canvas canvas, BackgroundThreadDrawHolder backgroundThreadDrawHolder) {
+        if (yooAvatar && backgroundThreadDrawHolder == null) {
+            yooApplyAvatarRounding();
+        }
         boolean result = false;
         if (gradientBitmap != null && currentImageKey != null) {
             canvas.save();

@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.utils.settings.SharedSettings;
 
@@ -54,6 +55,17 @@ public class YooBadges {
     private YooBadges() {
     }
 
+    /** Badges the user can give themselves in Settings > YooGram. Shown only on this device. */
+    public static final Badge[] PRESETS = {
+        new Badge(true, "\u2B50", 0xFFFFC107, null),
+        new Badge(true, "\uD83D\uDD25", 0xFFFF5722, null),
+        new Badge(true, "\uD83D\uDC8E", 0xFF03A9F4, null),
+        new Badge(true, "\uD83D\uDC51", 0xFFFFB300, null),
+        new Badge(true, "\uD83D\uDC31", 0xFF9C27B0, null),
+        new Badge(false, "YooGram", 0xFF7C4DFF, null),
+        new Badge(false, "Developer", 0xFF2A9DF4, null),
+    };
+
     @Nullable
     public static Badge get(long userId) {
         if (userId <= 0) {
@@ -61,7 +73,14 @@ public class YooBadges {
         }
         ensureLoaded();
         HashMap<Long, Badge> map = badges;
-        return map != null ? map.get(userId) : null;
+        Badge badge = map != null ? map.get(userId) : null;
+        if (badge == null) {
+            final int own = SharedSettings.yooMyBadge.get();
+            if (own > 0 && own <= PRESETS.length && userId == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
+                badge = PRESETS[own - 1];
+            }
+        }
+        return badge;
     }
 
     private static synchronized void ensureLoaded() {
