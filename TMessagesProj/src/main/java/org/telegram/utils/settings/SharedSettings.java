@@ -147,6 +147,9 @@ public final class SharedSettings {
     public static final BooleanSetting yooNoFolderSwipe =
         BooleanSetting.of("yoo_no_folder_swipe", false);
 
+    public static final BooleanSetting yooConfirmCall =
+        BooleanSetting.of("yoo_confirm_call", false);
+
     private SharedSettings() {
     }
 }

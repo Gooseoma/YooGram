@@ -11320,4 +11320,9 @@
     <string name="YooUnrestrict">Remove mute / ban</string>
     <string name="YooUnrestricted">Restrictions removed for %1$s</string>
     <string name="YooNoFolderSwipe">Disable swipe between folders</string>
+    <string name="YooConfirmCall">Confirm before calling</string>
+    <string name="YooConfirmCallTitle">Call?</string>
+    <string name="YooConfirmVideoCallTitle">Video call?</string>
+    <string name="YooConfirmCallText">Do you want to start the call?</string>
+    <string name="YooCall">Call</string>
 </resources>

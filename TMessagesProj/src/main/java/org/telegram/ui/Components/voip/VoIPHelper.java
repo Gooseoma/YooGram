@@ -73,7 +73,25 @@ public class VoIPHelper {
 
 	private static final int VOIP_SUPPORT_ID = 4244000;
 
+	private static boolean yooCallConfirmed;
+
 	public static void startCall(TLRPC.User user, boolean videoCall, boolean canVideoCall, final Activity activity, TLRPC.UserFull userFull, AccountInstance accountInstance) {
+		if (org.telegram.utils.settings.SharedSettings.yooConfirmCall.get() && !yooCallConfirmed && activity != null) {
+			new AlertDialog.Builder(activity)
+					.setTitle(LocaleController.getString(videoCall ? R.string.YooConfirmVideoCallTitle : R.string.YooConfirmCallTitle))
+					.setMessage(LocaleController.getString(R.string.YooConfirmCallText))
+					.setPositiveButton(LocaleController.getString(R.string.YooCall), (d, w) -> {
+						yooCallConfirmed = true;
+						try {
+							startCall(user, videoCall, canVideoCall, activity, userFull, accountInstance);
+						} finally {
+							yooCallConfirmed = false;
+						}
+					})
+					.setNegativeButton(LocaleController.getString(R.string.Cancel), null)
+					.show();
+			return;
+		}
 		if (accountInstance == null ? MessagesController.getInstance(UserConfig.selectedAccount).isFrozen() : accountInstance.getMessagesController().isFrozen()) {
 			AccountFrozenAlert.show(accountInstance == null ? UserConfig.selectedAccount : accountInstance.getCurrentAccount());
 			return;
