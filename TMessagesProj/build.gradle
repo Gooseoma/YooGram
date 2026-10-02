@@ -147,6 +147,11 @@ android {
 
         multiDexEnabled true
 
+        // Own Telegram API keys: put YOO_API_ID / YOO_API_HASH into ~/.gradle/gradle.properties
+        // (never commit them). Falls back to the stock values when not set.
+        buildConfigField "int", "YOO_API_ID", String.valueOf(findProperty("YOO_API_ID") ?: "4")
+        buildConfigField "String", "YOO_API_HASH", "\"" + (findProperty("YOO_API_HASH") ?: "014b35b6184100b085b0d0572f9b5103") + "\""
+
         externalNativeBuild {
             cmake {
                 version '3.22.1'
