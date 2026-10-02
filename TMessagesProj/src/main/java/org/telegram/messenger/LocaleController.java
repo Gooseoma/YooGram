@@ -78,6 +78,9 @@ public class LocaleController {
 
     private volatile FastDateFormat formatterDay;
     public FastDateFormat getFormatterDay() {
+        if (org.telegram.utils.settings.SharedSettings.yooTimeSeconds.get()) {
+            return getFormatterDayWithSeconds();
+        }
         if (formatterDay == null) {
             synchronized (this) {
                 if (formatterDay == null) {
@@ -1456,7 +1459,7 @@ public class LocaleController {
         if (value == null) {
             value = getInstance().getLocalizedString(key);
         }
-        return value;
+        return org.telegram.yoogram.YooBranding.fix(value);
     }
 
     public static String getString(@StringRes int res) {
@@ -2856,6 +2859,12 @@ public class LocaleController {
     }
 
     public static String formatShortNumber(int number, int[] rounded) {
+        if (org.telegram.utils.settings.SharedSettings.yooNoNumberRounding.get()) {
+            if (rounded != null) {
+                rounded[0] = number;
+            }
+            return String.format(Locale.US, "%,d", number);
+        }
         StringBuilder K = new StringBuilder();
         int lastDec = 0;
         int KCount = 0;
@@ -4437,11 +4446,16 @@ public class LocaleController {
     }
     private String getLocalizedString(String key) {
         checkLocalizationInternal();
-        return localizationInternal.getByResName(key);
+        return org.telegram.yoogram.YooBranding.fix(localizationInternal.getByResName(key));
     }
 
     @Nullable
     private String getStringV2(String key, @StringRes int stringRes, String fallback) {
+        return org.telegram.yoogram.YooBranding.fix(getStringV2Raw(key, stringRes, fallback));
+    }
+
+    @Nullable
+    private String getStringV2Raw(String key, @StringRes int stringRes, String fallback) {
         final Context context = ApplicationLoader.applicationContext;
         String value;
 

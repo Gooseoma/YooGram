@@ -44,6 +44,60 @@ public final class SharedSettings {
     public static final LongSetting yooBadgesLastUpdate =
         LongSetting.of("yoo_badges_last_update", 0L);
 
+    // ---- YooGram: General ----
+    public static final BooleanSetting yooNoNumberRounding =
+        BooleanSetting.of("yoo_no_number_rounding", false);
+
+    public static final BooleanSetting yooTimeSeconds =
+        BooleanSetting.of("yoo_time_seconds", false);
+
+    /** 0 = default, 1 = fast, 2 = ultra. */
+    public static final IntSetting yooDownloadBoost =
+        IntSetting.of("yoo_download_boost", 0);
+
+    public static final BooleanSetting yooUploadBoost =
+        BooleanSetting.of("yoo_upload_boost", false);
+
+    public static final BooleanSetting yooHidePhone =
+        BooleanSetting.of("yoo_hide_phone", false);
+
+    // ---- YooGram: Appearance ----
+    public static final BooleanSetting yooForceGlass =
+        BooleanSetting.of("yoo_force_glass", true);
+
+    public static final BooleanSetting yooForceSnow =
+        BooleanSetting.of("yoo_force_snow", false);
+
+    public static final BooleanSetting yooHideStories =
+        BooleanSetting.of("yoo_hide_stories", false);
+
+    public static final BooleanSetting yooHeaderCenter =
+        BooleanSetting.of("yoo_header_center", false);
+
+    /** 0 = app name, 1 = "Chats", 2 = first name, 3 = username, 4 = full name. */
+    public static final IntSetting yooHeaderText =
+        IntSetting.of("yoo_header_text", 0);
+
+    // ---- YooGram: Chats ----
+    public static final BooleanSetting yooHideGreeting =
+        BooleanSetting.of("yoo_hide_greeting", false);
+
+    public static final BooleanSetting yooCommaAfterMention =
+        BooleanSetting.of("yoo_comma_after_mention", false);
+
+    public static final BooleanSetting yooEditedIcon =
+        BooleanSetting.of("yoo_edited_icon", false);
+
+    public static final BooleanSetting yooHideStickerTime =
+        BooleanSetting.of("yoo_hide_sticker_time", false);
+
+    public static final BooleanSetting yooAlwaysHd =
+        BooleanSetting.of("yoo_always_hd", false);
+
+    /** Seconds to seek on double tap in the video player: 5, 10 or 20. */
+    public static final IntSetting yooSeekSeconds =
+        IntSetting.of("yoo_seek_seconds", 10);
+
     private SharedSettings() {
     }
 }

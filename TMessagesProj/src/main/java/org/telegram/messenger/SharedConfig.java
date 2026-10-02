@@ -1115,6 +1115,11 @@ public class SharedConfig {
         editor.apply();
     }
 
+    public static void setUseSystemEmoji(boolean value) {
+        useSystemEmoji = value;
+        MessagesController.getGlobalMainSettings().edit().putBoolean("useSystemEmoji", value).apply();
+    }
+
     public static void toggleUseSystemBoldFont() {
         useSystemBoldFont = !useSystemBoldFont;
         AndroidUtilities.mediumTypeface = null;
@@ -1728,7 +1733,7 @@ public class SharedConfig {
     }
 
     public static boolean canBlurChat() {
-        return getDevicePerformanceClass() >= (Build.VERSION.SDK_INT >= 31 ? PERFORMANCE_CLASS_AVERAGE : PERFORMANCE_CLASS_HIGH) || BuildVars.DEBUG_PRIVATE_VERSION;
+        return (Build.VERSION.SDK_INT >= 31 && org.telegram.utils.settings.SharedSettings.yooForceGlass.get()) || getDevicePerformanceClass() >= (Build.VERSION.SDK_INT >= 31 ? PERFORMANCE_CLASS_AVERAGE : PERFORMANCE_CLASS_HIGH) || BuildVars.DEBUG_PRIVATE_VERSION;
     }
 
     public static boolean chatBlurEnabled() {

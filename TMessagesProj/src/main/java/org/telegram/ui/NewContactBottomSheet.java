@@ -963,7 +963,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                         }
                     }), true, dp(8f / 3f), dp(1)));
                 } else {
-                    underPhoneTextView.setText("This phone number is on Telegram.");
+                    underPhoneTextView.setText("This phone number is on YooGram.");
                 }
             }
             updateBottomTranslation(false);

@@ -317,7 +317,7 @@ public class FileUploadOperation {
                     }
                     uploadChunkSize = chunkSize;
                 }
-                maxRequestsCount = Math.max(1, (slowNetwork ? maxUploadingSlowNetworkKBytes : maxUploadingKBytes) / uploadChunkSize);
+                maxRequestsCount = Math.max(1, (slowNetwork ? maxUploadingSlowNetworkKBytes : (org.telegram.utils.settings.SharedSettings.yooUploadBoost.get() ? maxUploadingKBytes * 2 : maxUploadingKBytes)) / uploadChunkSize);
 
                 if (isEncrypted) {
                     freeRequestIvs = new ArrayList<>(maxRequestsCount);

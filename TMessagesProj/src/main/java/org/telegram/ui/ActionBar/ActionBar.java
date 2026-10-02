@@ -436,6 +436,13 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                 }
             }
         }
+        if (supportsHolidayImage && !titleOverlayShown && org.telegram.utils.settings.SharedSettings.yooForceSnow.get() && Theme.getCurrentHolidayDrawable() == null
+            && (child == titleTextView[0] || child == titleTextView[1] || child == titlesContainer && useContainerForTitles)) {
+            if (snowflakesEffect == null) {
+                snowflakesEffect = new SnowflakesEffect(0);
+            }
+            snowflakesEffect.onDraw(this, canvas);
+        }
         if (clip) {
             canvas.restore();
         }
@@ -539,6 +546,15 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
             titlesContainer.addView(titleTextView[i], 0, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.TOP));
         } else {
             addView(titleTextView[i], 0, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.TOP));
+        }
+    }
+
+    private boolean yooCenterTitle;
+
+    public void setYooCenterTitle(boolean value) {
+        if (yooCenterTitle != value) {
+            yooCenterTitle = value;
+            requestLayout();
         }
     }
 
@@ -1543,7 +1559,11 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                         textTop = (getCurrentActionBarHeight() - titleTextView[i].getTextHeight()) / 2;
                     }
                 }
-                titleTextView[i].layout(textLeft, additionalTop + textTop - titleTextView[i].getPaddingTop(), textLeft + titleTextView[i].getMeasuredWidth(), additionalTop + textTop + titleTextView[i].getTextHeight() - titleTextView[i].getPaddingTop() + titleTextView[i].getPaddingBottom());
+                int titleLeft = textLeft;
+                if (yooCenterTitle) {
+                    titleLeft = Math.max(textLeft, (getMeasuredWidth() - titleTextView[i].getMeasuredWidth()) / 2);
+                }
+                titleTextView[i].layout(titleLeft, additionalTop + textTop - titleTextView[i].getPaddingTop(), titleLeft + titleTextView[i].getMeasuredWidth(), additionalTop + textTop + titleTextView[i].getTextHeight() - titleTextView[i].getPaddingTop() + titleTextView[i].getPaddingBottom());
             }
         }
         if (additionalSubTitleOverlayContainer != null) {

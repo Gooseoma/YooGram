@@ -295,6 +295,13 @@ public class FileLoadOperation {
             maxDownloadRequests = 4;
             maxDownloadRequestsBig = 4;
         }
+        final int yooBoost = org.telegram.utils.settings.SharedSettings.yooDownloadBoost.get();
+        if (yooBoost > 0 && !forceSmallChunk) {
+            downloadChunkSize = 1024 * 128;
+            downloadChunkSizeBig = 1024 * 512;
+            maxDownloadRequests = yooBoost >= 2 ? 16 : 8;
+            maxDownloadRequestsBig = maxDownloadRequests;
+        }
         maxCdnParts = (int) (FileLoader.DEFAULT_MAX_FILE_SIZE / downloadChunkSizeBig);
     }
 

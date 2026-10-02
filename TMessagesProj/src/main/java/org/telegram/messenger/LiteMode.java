@@ -147,6 +147,14 @@ public class LiteMode {
     }
 
     public static boolean isEnabled(int flag) {
+        if (org.telegram.utils.settings.SharedSettings.yooForceGlass.get()) {
+            if (flag == FLAG_LIQUID_GLASS && Build.VERSION.SDK_INT >= 33) {
+                return true;
+            }
+            if (flag == FLAG_CHAT_BLUR && Build.VERSION.SDK_INT >= 31) {
+                return true;
+            }
+        }
         if (flag == FLAG_CHAT_FORUM_TWOCOLUMN && AndroidUtilities.isTablet()) {
             // always enabled for tablets
             return true;
