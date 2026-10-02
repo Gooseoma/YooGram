@@ -141,6 +141,9 @@ public final class SharedSettings {
     public static final BooleanSetting yooNoDoubleTapReaction =
         BooleanSetting.of("yoo_no_double_tap_reaction", false);
 
+    public static final BooleanSetting yooNoSwipeReply =
+        BooleanSetting.of("yoo_no_swipe_reply", false);
+
     private SharedSettings() {
     }
 }
