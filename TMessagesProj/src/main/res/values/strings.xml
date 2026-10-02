@@ -11315,4 +11315,5 @@
     <string name="YooConfirmStickerTitle">Send sticker?</string>
     <string name="YooConfirmStickerText">Do you want to send this sticker?</string>
     <string name="YooNoDoubleTap">Disable double-tap reaction</string>
+    <string name="YooNoSwipeReply">Disable swipe to reply</string>
 </resources>
