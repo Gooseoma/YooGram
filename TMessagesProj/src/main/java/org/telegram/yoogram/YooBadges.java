@@ -51,6 +51,7 @@ public class YooBadges {
     private static volatile HashMap<Long, Badge> badges;
     private static boolean loadedFromDisk;
     private static boolean loading;
+    private static volatile String lastStatus = "-";
 
     private YooBadges() {
     }
@@ -104,8 +105,9 @@ public class YooBadges {
         }
         Utilities.globalQueue.postRunnable(() -> {
             try {
-                fetch();
+                fetch(false);
             } catch (Throwable e) {
+                lastStatus = "error: " + e;
                 FileLog.e(e);
             } finally {
                 synchronized (YooBadges.class) {
@@ -115,22 +117,47 @@ public class YooBadges {
         });
     }
 
-    private static void fetch() throws Exception {
+    /** Human readable state for the settings screen. */
+    public static String status() {
+        ensureLoaded();
+        HashMap<Long, Badge> map = badges;
+        return "server: " + YooConfig.BADGES_BASE_URL
+            + "\nbadges: " + (map == null ? 0 : map.size())
+            + "\nversion: " + SharedSettings.yooBadgesVersion.get()
+            + "\nlast result: " + lastStatus;
+    }
+
+    /** Forces a download now (ignores the refresh interval and ETag); done runs on the UI thread. */
+    public static void refreshNow(Runnable done) {
+        Utilities.globalQueue.postRunnable(() -> {
+            try {
+                fetch(true);
+            } catch (Throwable e) {
+                lastStatus = "error: " + e;
+                FileLog.e(e);
+            }
+            org.telegram.messenger.AndroidUtilities.runOnUIThread(done);
+        });
+    }
+
+    private static void fetch(boolean force) throws Exception {
         HttpURLConnection connection = (HttpURLConnection) new URL(YooConfig.BADGES_BASE_URL + "/v1/badges").openConnection();
         try {
             connection.setConnectTimeout(10000);
             connection.setReadTimeout(15000);
             connection.setRequestProperty("Accept", "application/json");
             String etag = SharedSettings.yooBadgesEtag.get();
-            if (etag != null && SharedSettings.yooBadgesPayload.get() != null) {
+            if (!force && etag != null && SharedSettings.yooBadgesPayload.get() != null) {
                 connection.setRequestProperty("If-None-Match", etag);
             }
             int code = connection.getResponseCode();
             if (code == HttpURLConnection.HTTP_NOT_MODIFIED) {
+                lastStatus = "304 not modified";
                 SharedSettings.yooBadgesLastUpdate.set(System.currentTimeMillis());
                 return;
             }
             if (code != HttpURLConnection.HTTP_OK) {
+                lastStatus = "HTTP " + code;
                 return;
             }
             String body = readBody(connection.getInputStream());
@@ -138,19 +165,23 @@ public class YooBadges {
             String payload = envelope.getString("payload");
             String sig = envelope.getString("sig");
             if (!verify(payload, sig)) {
+                lastStatus = "bad signature (key mismatch?)";
                 FileLog.e("YooBadges: bad signature, ignoring list");
                 return;
             }
             JSONObject json = new JSONObject(payload);
             int version = json.optInt("version", 0);
             if (version < SharedSettings.yooBadgesVersion.get()) {
+                lastStatus = "older version " + version + " ignored";
                 FileLog.e("YooBadges: older version, ignoring list");
                 return;
             }
             HashMap<Long, Badge> parsed = parse(payload);
             if (parsed == null) {
+                lastStatus = "cannot parse payload";
                 return;
             }
+            lastStatus = "ok, " + parsed.size() + " badges, version " + version;
             SharedSettings.yooBadgesPayload.set(payload);
             SharedSettings.yooBadgesVersion.set(version);
             SharedSettings.yooBadgesEtag.set(connection.getHeaderField("ETag"));

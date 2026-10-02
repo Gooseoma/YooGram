@@ -11328,4 +11328,9 @@
     <string name="YooPreview">Preview</string>
     <string name="YooPreviewIn">Hi! How are you?</string>
     <string name="YooPreviewOut">Great, thanks!</string>
+    <string name="YooShowId">Show ID in profiles</string>
+    <string name="YooIdLabel">ID</string>
+    <string name="YooIdCopied">ID copied</string>
+    <string name="YooSecBadges">Badges</string>
+    <string name="YooBadgesRefresh">Update badges now</string>
 </resources>

@@ -37,6 +37,7 @@ public class YooGeneralSettings extends YooSettingsPage {
         rows.add(Row.info(LocaleController.getString(R.string.YooTransferInfo)));
 
         rows.add(Row.header(LocaleController.getString(R.string.YooSecProfile)));
+        rows.add(Row.toggle(LocaleController.getString(R.string.YooShowId), SharedSettings.yooShowId));
         rows.add(Row.toggle(LocaleController.getString(R.string.YooHidePhone), SharedSettings.yooHidePhone));
         rows.add(Row.info(LocaleController.getString(R.string.YooHidePhoneInfo)));
     }

@@ -614,6 +614,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private int numberSectionRow;
     private int numberRow;
     public int birthdayRow;
+    private int yooIdRow = -1;
+
+    private String yooIdString() {
+        if (userId != 0) {
+            return String.valueOf(userId);
+        }
+        if (currentChat != null) {
+            return ChatObject.isChannel(currentChat) ? "-100" + currentChat.id : "-" + currentChat.id;
+        }
+        return String.valueOf(chatId);
+    }
     private int setUsernameRow;
     private int bioRow;
     private int phoneSuggestionSectionRow;
@@ -4476,6 +4487,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 onMemberClick(participant, false, view);
             } else if (position == addMemberRow) {
                 openAddMember();
+            } else if (position == yooIdRow) {
+                AndroidUtilities.addToClipboard(yooIdString());
+                BulletinFactory.of(this).createCopyBulletin(getString(R.string.YooIdCopied)).show();
             } else if (position == usernameRow) {
                 processOnClickOrPress(position, view, x, y);
             } else if (position == linkedCommunityRow) {
@@ -10455,6 +10469,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         numberSectionRow = -1;
         numberRow = -1;
         birthdayRow = -1;
+        yooIdRow = -1;
         setUsernameRow = -1;
         bioRow = -1;
         channelRow = -1;
@@ -10713,6 +10728,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (user != null && username != null) {
                     usernameRow = rowCount++;
                 }
+                if (user != null && org.telegram.utils.settings.SharedSettings.yooShowId.get()) {
+                    yooIdRow = rowCount++;
+                }
                 if (userInfo != null) {
                     if (userInfo.birthday != null) {
                         birthdayRow = rowCount++;
@@ -10870,6 +10888,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 if (ChatObject.isPublic(currentChat)) {
                     usernameRow = rowCount++;
+                }
+                if (org.telegram.utils.settings.SharedSettings.yooShowId.get()) {
+                    yooIdRow = rowCount++;
                 }
             }
             if (emptyRow < 0 && emptyRow2 < 0) {
@@ -13577,6 +13598,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             usernames = new ArrayList<>();
                         }
                         detailCell.setTextAndValue(text, alsoUsernamesString(username, usernames, value), infoEndRowEmpty == -1 && (isTopic || bizHoursRow != -1 || bizLocationRow != -1) && birthdayRow < 0);
+                    } else if (position == yooIdRow) {
+                        detailCell.setTextAndValue(yooIdString(), getString(R.string.YooIdLabel), false);
                     } else if (position == locationRow) {
                         if (chatInfo != null && chatInfo.location instanceof TLRPC.TL_channelLocation) {
                             TLRPC.TL_channelLocation location = (TLRPC.TL_channelLocation) chatInfo.location;
@@ -14286,7 +14309,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         position == faqRow || position == policyRow || position == sendLogsRow || position == sendLastLogsRow ||
                         position == clearLogsRow || position == switchBackendRow || position == setAvatarRow ||
                         position == addToGroupButtonRow || position == premiumRow || position == premiumGiftingRow ||
-                        position == businessRow || position == liteModeRow || position == birthdayRow || position == channelRow ||
+                        position == businessRow || position == liteModeRow || position == birthdayRow || position == yooIdRow || position == channelRow ||
                         position == starsRow || position == tonRow || position == linkedCommunityRow;
             }
             if (holder.itemView instanceof UserCell) {
@@ -14315,7 +14338,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (position == infoHeaderRow || position == membersHeaderRow || position == settingsSectionRow2 ||
                     position == numberSectionRow || position == helpHeaderRow || position == debugHeaderRow || position == botPermissionsHeader) {
                 return VIEW_TYPE_HEADER;
-            } else if (position == phoneRow || position == locationRow || position == numberRow || position == birthdayRow) {
+            } else if (position == phoneRow || position == locationRow || position == numberRow || position == birthdayRow || position == yooIdRow) {
                 return VIEW_TYPE_TEXT_DETAIL;
             } else if (position == usernameRow || position == setUsernameRow) {
                 return VIEW_TYPE_TEXT_DETAIL_MULTILINE;
@@ -15753,6 +15776,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             put(++pointer, bizHoursRow, sparseIntArray);
             put(++pointer, bizLocationRow, sparseIntArray);
             put(++pointer, birthdayRow, sparseIntArray);
+            put(++pointer, yooIdRow, sparseIntArray);
             put(++pointer, channelRow, sparseIntArray);
             put(++pointer, botStarsBalanceRow, sparseIntArray);
             put(++pointer, botTonBalanceRow, sparseIntArray);
