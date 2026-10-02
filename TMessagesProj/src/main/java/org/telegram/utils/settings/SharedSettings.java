@@ -126,6 +126,12 @@ public final class SharedSettings {
     public static final IntSetting yooSeekSeconds =
         IntSetting.of("yoo_seek_seconds", 10);
 
+    public static final BooleanSetting yooNoReplyEmoji =
+        BooleanSetting.of("yoo_no_reply_emoji", false);
+
+    public static final BooleanSetting yooNoReplyColors =
+        BooleanSetting.of("yoo_no_reply_colors", false);
+
     private SharedSettings() {
     }
 }
