@@ -445,6 +445,17 @@ public class ReplyMessageLine {
         if ((type == TYPE_REPLY || type == TYPE_LINK || type == TYPE_CONTACT) && messageObject != null && messageObject.overrideLinkEmoji != -1) {
             emojiDocumentId = messageObject.overrideLinkEmoji;
         }
+        if (org.telegram.utils.settings.SharedSettings.yooNoReplyEmoji.get()) {
+            emojiDocumentId = 0;
+        }
+        if (org.telegram.utils.settings.SharedSettings.yooNoReplyColors.get() && type != TYPE_CONTACT) {
+            final boolean yooOut = messageObject != null && messageObject.isOutOwner();
+            color1 = color2 = color3 = Theme.getColor(yooOut ? Theme.key_chat_outReplyLine : Theme.key_chat_inReplyLine, resourcesProvider);
+            hasColor2 = false;
+            hasColor3 = false;
+            nameColor = Theme.getColor(yooOut ? Theme.key_chat_outReplyNameText : Theme.key_chat_inReplyNameText, resourcesProvider);
+            backgroundColor = Theme.multAlpha(color1, 0.10f);
+        }
         if (emojiDocumentId != 0 && emoji == null && parentView != null) {
             emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(parentView, false, dp(20), AnimatedEmojiDrawable.CACHE_TYPE_ALERT_PREVIEW_STATIC);
             if (parentView instanceof ChatMessageCell ? ((ChatMessageCell) parentView).isCellAttachedToWindow() : parentView.isAttachedToWindow()) {
