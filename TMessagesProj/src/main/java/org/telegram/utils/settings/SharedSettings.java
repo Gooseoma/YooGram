@@ -135,6 +135,9 @@ public final class SharedSettings {
     public static final BooleanSetting yooHideFolderCounters =
         BooleanSetting.of("yoo_hide_folder_counters", false);
 
+    public static final BooleanSetting yooConfirmSticker =
+        BooleanSetting.of("yoo_confirm_sticker", false);
+
     private SharedSettings() {
     }
 }

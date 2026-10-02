@@ -12583,8 +12583,26 @@ public class ChatActivityEnterView extends FrameLayout implements
     }
 
     @Override
+    private boolean yooStickerConfirmed;
+
     public void onStickerSelected(TLRPC.Document sticker, String query, Object parent, MessageObject.SendAnimationData sendAnimationData, boolean clearsInputField, boolean notify, int scheduleDate, int scheduleRepeatPeriod) {
         if (isLiveComment) return;
+        if (org.telegram.utils.settings.SharedSettings.yooConfirmSticker.get() && !yooStickerConfirmed && parentActivity != null) {
+            new org.telegram.ui.ActionBar.AlertDialog.Builder(parentActivity, resourcesProvider)
+                .setTitle(LocaleController.getString(R.string.YooConfirmStickerTitle))
+                .setMessage(LocaleController.getString(R.string.YooConfirmStickerText))
+                .setPositiveButton(LocaleController.getString(R.string.Send), (d, w) -> {
+                    yooStickerConfirmed = true;
+                    try {
+                        onStickerSelected(sticker, query, parent, sendAnimationData, clearsInputField, notify, scheduleDate, scheduleRepeatPeriod);
+                    } finally {
+                        yooStickerConfirmed = false;
+                    }
+                })
+                .setNegativeButton(LocaleController.getString(R.string.Cancel), null)
+                .show();
+            return;
+        }
         if (replyingQuote != null && parentFragment != null && replyingQuote.outdated) {
             parentFragment.showQuoteMessageUpdate();
             return;
