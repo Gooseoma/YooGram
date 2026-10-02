@@ -353,4 +353,7 @@
     <string name="YooConfirmVideoCallTitle">Видеозвонок?</string>
     <string name="YooConfirmCallText">Начать звонок?</string>
     <string name="YooCall">Позвонить</string>
+    <string name="YooPreview">Предпросмотр</string>
+    <string name="YooPreviewIn">Привет! Как дела?</string>
+    <string name="YooPreviewOut">Отлично, спасибо!</string>
 </resources>

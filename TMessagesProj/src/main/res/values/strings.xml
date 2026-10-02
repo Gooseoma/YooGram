@@ -11325,4 +11325,7 @@
     <string name="YooConfirmVideoCallTitle">Video call?</string>
     <string name="YooConfirmCallText">Do you want to start the call?</string>
     <string name="YooCall">Call</string>
+    <string name="YooPreview">Preview</string>
+    <string name="YooPreviewIn">Hi! How are you?</string>
+    <string name="YooPreviewOut">Great, thanks!</string>
 </resources>

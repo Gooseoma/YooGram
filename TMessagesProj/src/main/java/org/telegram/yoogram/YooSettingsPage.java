@@ -38,6 +38,7 @@ public abstract class YooSettingsPage extends BaseFragment {
     protected static final int TYPE_NAV = 4;
     protected static final int TYPE_SHADOW = 5;
     protected static final int TYPE_ACTION = 6;
+    protected static final int TYPE_PREVIEW = 7;
 
     public interface Action {
         void run();
@@ -81,6 +82,12 @@ public abstract class YooSettingsPage extends BaseFragment {
             Row r = new Row();
             r.type = TYPE_INFO;
             r.title = text;
+            return r;
+        }
+
+        static Row preview() {
+            Row r = new Row();
+            r.type = TYPE_PREVIEW;
             return r;
         }
 
@@ -200,6 +207,7 @@ public abstract class YooSettingsPage extends BaseFragment {
                 if (view instanceof TextCheckCell) {
                     ((TextCheckCell) view).setChecked(value);
                 }
+                refreshPreviews();
                 if (row.restartHint) {
                     BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_infotip, org.telegram.messenger.LocaleController.getString(R.string.YooRestartHint)).show();
                 }
@@ -214,6 +222,7 @@ public abstract class YooSettingsPage extends BaseFragment {
                 builder.setItems(row.options, (dialog, which) -> {
                     row.intSetting.set(row.optionValues[which]);
                     adapter.notifyItemChanged(position);
+                    refreshPreviews();
                 });
                 showDialog(builder.create());
                 break;
@@ -226,6 +235,14 @@ public abstract class YooSettingsPage extends BaseFragment {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void refreshPreviews() {
+        for (int i = 0; i < rows.size(); i++) {
+            if (rows.get(i).type == TYPE_PREVIEW) {
+                adapter.notifyItemChanged(i);
+            }
         }
     }
 
@@ -286,6 +303,9 @@ public abstract class YooSettingsPage extends BaseFragment {
                     break;
                 case TYPE_SHADOW:
                     view = new ShadowSectionCell(context);
+                    break;
+                case TYPE_PREVIEW:
+                    view = new YooPreviewCell(context);
                     break;
                 default:
                     view = new TextInfoPrivacyCell(context);
