@@ -105,6 +105,10 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
     }
 
     public boolean isAvailable() {
+        // YooGram: the SMS jobs program is disabled.
+        if (true) {
+            return false;
+        }
         if (currentState != STATE_NONE && currentState != STATE_JOINED) {
             checkIsEligible(false, null);
             loadStatus(false);
