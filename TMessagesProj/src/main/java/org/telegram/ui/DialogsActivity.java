@@ -1409,7 +1409,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 } else if (ev != null && ev.getAction() == MotionEvent.ACTION_DOWN) {
                     additionalOffset = 0;
                 }
-                if (ev != null && ev.getAction() == MotionEvent.ACTION_DOWN && !startedTracking && !maybeStartTracking && filterTabsView.getVisibility() == VISIBLE) {
+                if (ev != null && ev.getAction() == MotionEvent.ACTION_DOWN && !startedTracking && !maybeStartTracking && filterTabsView.getVisibility() == VISIBLE && !org.telegram.utils.settings.SharedSettings.yooNoFolderSwipe.get()) {
                     startedTrackingPointerId = ev.getPointerId(0);
                     maybeStartTracking = true;
                     startedTrackingX = (int) ev.getX();

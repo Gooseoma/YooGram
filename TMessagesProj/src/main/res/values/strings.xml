@@ -11319,4 +11319,5 @@
     <string name="YooDeletedLabel">Deleted</string>
     <string name="YooUnrestrict">Remove mute / ban</string>
     <string name="YooUnrestricted">Restrictions removed for %1$s</string>
+    <string name="YooNoFolderSwipe">Disable swipe between folders</string>
 </resources>
