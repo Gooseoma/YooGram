@@ -150,6 +150,9 @@ public final class SharedSettings {
     public static final BooleanSetting yooConfirmCall =
         BooleanSetting.of("yoo_confirm_call", false);
 
+    public static final BooleanSetting yooShowId =
+        BooleanSetting.of("yoo_show_id", true);
+
     private SharedSettings() {
     }
 }

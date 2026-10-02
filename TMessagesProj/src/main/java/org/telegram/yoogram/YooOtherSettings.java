@@ -24,5 +24,20 @@ public class YooOtherSettings extends YooSettingsPage {
             }
         }));
         rows.add(Row.info(GITHUB_URL));
+        rows.add(Row.shadow());
+
+        rows.add(Row.header(LocaleController.getString(R.string.YooSecBadges)));
+        rows.add(Row.action(LocaleController.getString(R.string.YooBadgesRefresh), R.drawable.msg_retry, () -> {
+            YooBadges.refreshNow(() -> {
+                if (getParentActivity() == null) {
+                    return;
+                }
+                showDialog(new org.telegram.ui.ActionBar.AlertDialog.Builder(getParentActivity())
+                    .setTitle(LocaleController.getString(R.string.YooSecBadges))
+                    .setMessage(YooBadges.status())
+                    .setPositiveButton(LocaleController.getString(R.string.OK), null)
+                    .create());
+            });
+        }));
     }
 }

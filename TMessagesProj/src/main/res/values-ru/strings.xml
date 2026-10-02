@@ -356,4 +356,9 @@
     <string name="YooPreview">Предпросмотр</string>
     <string name="YooPreviewIn">Привет! Как дела?</string>
     <string name="YooPreviewOut">Отлично, спасибо!</string>
+    <string name="YooShowId">Показывать ID в профилях</string>
+    <string name="YooIdLabel">ID</string>
+    <string name="YooIdCopied">ID скопирован</string>
+    <string name="YooSecBadges">Значки</string>
+    <string name="YooBadgesRefresh">Обновить значки сейчас</string>
 </resources>
