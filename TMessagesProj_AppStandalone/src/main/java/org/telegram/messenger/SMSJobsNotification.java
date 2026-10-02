@@ -38,6 +38,10 @@ public class SMSJobsNotification extends Service {
     }
 
     public static boolean check(int currentAccount) {
+        // YooGram: the SMS jobs program is disabled, the service is not declared in the manifest.
+        if (true) {
+            return false;
+        }
         boolean showNotification = ApplicationLoader.mainInterfacePaused;
         if (showNotification) {
             showNotification = MessagesController.getInstance(currentAccount).smsjobsStickyNotificationEnabled;

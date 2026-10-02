@@ -18,12 +18,5 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name="org.telegram.messenger.SMSJobsNotification"
-            android:enabled="true"
-            android:exported="true"
-            android:foregroundServiceType="dataSync|remoteMessaging"
-        />
     </application>
 </manifest>
