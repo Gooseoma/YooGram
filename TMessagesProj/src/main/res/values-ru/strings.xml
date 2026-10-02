@@ -325,4 +325,9 @@
     <string name="YooSeek20">20 секунд</string>
     <string name="YooSecSupport">Поддержка</string>
     <string name="YooGithub">GitHub</string>
+    <string name="YooKeepDeleted">Сохранять удалённые сообщения</string>
+    <string name="YooKeepDeletedInfo">Сообщения, удалённые другими людьми, остаются в чате и помечаются значком корзины рядом со временем. Метка появляется после повторного открытия чата или прокрутки.</string>
+    <string name="YooHideChatHeaderBg">Убрать фон заголовка чата</string>
+    <string name="YooNoTail">Убрать «хвост» у сообщений</string>
+    <string name="YooStickerSize">Размер стикеров</string>
 </resources>

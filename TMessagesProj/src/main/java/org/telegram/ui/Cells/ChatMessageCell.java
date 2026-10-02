@@ -264,6 +264,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         DownloadController.FileDownloadProgressListener, TextSelectionHelper.SelectableView,
         NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target, IMessageCell {
 
+    private static float yooStickerScale() {
+        return org.telegram.utils.settings.SharedSettings.yooStickerSize.get() / 14f;
+    }
+
     private static String yooEditedLabel() {
         return org.telegram.utils.settings.SharedSettings.yooEditedIcon.get() ? "\u270E" : getString(R.string.EditedMessage);
     }
@@ -9679,9 +9683,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     float maxHeight;
                     int maxWidth;
                     if (AndroidUtilities.isTablet()) {
-                        maxHeight = maxWidth = (int) (AndroidUtilities.getMinTabletSide() * 0.4f);
+                        maxHeight = maxWidth = (int) (AndroidUtilities.getMinTabletSide() * 0.4f * yooStickerScale());
                     } else {
-                        maxHeight = maxWidth = (int) (Math.min(getParentWidth(), AndroidUtilities.displaySize.y) * 0.5f);
+                        maxHeight = maxWidth = (int) (Math.min(getParentWidth(), AndroidUtilities.displaySize.y) * 0.5f * yooStickerScale());
                     }
                     String filter;
                     if (messageObject.isAnimatedEmoji() || messageObject.isDice()) {
@@ -18489,6 +18493,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             timeString = LocaleController.formatSeenDate(date);
         } else {
             timeString = LocaleController.getInstance().getFormatterDay().format((long) (messageObject.messageOwner.date) * 1000);
+        }
+        if (org.telegram.yoogram.YooDeleted.isDeleted(currentAccount, currentMessageObject.getDialogId(), currentMessageObject.getId())) {
+            timeString = "\uD83D\uDDD1 " + timeString;
         }
         if (currentMessageObject.messageOwner.video_processing_pending) {
             timeString = formatString(R.string.ScheduledTimeApprox, timeString);

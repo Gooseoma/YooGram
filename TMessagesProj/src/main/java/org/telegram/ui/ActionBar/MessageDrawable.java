@@ -289,12 +289,12 @@ public class MessageDrawable extends Drawable {
 
         topY = top - (gradientShader instanceof BitmapShader ? heightOffset : 0);
         isTopNear = topNear;
-        isBottomNear = bottomNear;
+        isBottomNear = bottomNear || org.telegram.utils.settings.SharedSettings.yooNoTail.get();
     }
 
     public void setTopBottomNear(boolean topNear, boolean bottomNear) {
         isTopNear = topNear;
-        isBottomNear = bottomNear;
+        isBottomNear = bottomNear || org.telegram.utils.settings.SharedSettings.yooNoTail.get();
     }
 
     public int getTopY() {

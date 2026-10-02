@@ -25,6 +25,12 @@ public class YooChatsSettings extends YooSettingsPage {
         rows.add(Row.header(LocaleController.getString(R.string.YooSecMessages)));
         rows.add(Row.toggle(LocaleController.getString(R.string.YooEditedIcon), SharedSettings.yooEditedIcon));
         rows.add(Row.toggle(LocaleController.getString(R.string.YooHideStickerTime), SharedSettings.yooHideStickerTime));
+        rows.add(Row.toggle(LocaleController.getString(R.string.YooNoTail), SharedSettings.yooNoTail));
+        rows.add(Row.choice(
+            LocaleController.getString(R.string.YooStickerSize),
+            SharedSettings.yooStickerSize,
+            new CharSequence[]{"8", "10", "12", "14", "16", "18", "20"},
+            new int[]{8, 10, 12, 14, 16, 18, 20}));
         rows.add(Row.shadow());
 
         rows.add(Row.header(LocaleController.getString(R.string.YooSecPhoto)));

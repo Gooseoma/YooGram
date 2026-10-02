@@ -20,6 +20,9 @@ public class YooGeneralSettings extends YooSettingsPage {
         rows.add(Row.toggle(LocaleController.getString(R.string.YooTimeSeconds), SharedSettings.yooTimeSeconds));
         rows.add(Row.info(LocaleController.getString(R.string.YooNumbersInfo)));
 
+        rows.add(Row.toggle(LocaleController.getString(R.string.YooKeepDeleted), SharedSettings.yooKeepDeleted));
+        rows.add(Row.info(LocaleController.getString(R.string.YooKeepDeletedInfo)));
+
         rows.add(Row.header(LocaleController.getString(R.string.YooSecTransfer)));
         rows.add(Row.choice(
             LocaleController.getString(R.string.YooDownloadBoost),

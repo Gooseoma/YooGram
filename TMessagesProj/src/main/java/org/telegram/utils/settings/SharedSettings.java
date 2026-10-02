@@ -58,6 +58,12 @@ public final class SharedSettings {
     public static final BooleanSetting yooUploadBoost =
         BooleanSetting.of("yoo_upload_boost", false);
 
+    public static final BooleanSetting yooKeepDeleted =
+        BooleanSetting.of("yoo_keep_deleted", false);
+
+    public static final BooleanSetting yooHideChatHeaderBg =
+        BooleanSetting.of("yoo_hide_chat_header_bg", false);
+
     public static final BooleanSetting yooHidePhone =
         BooleanSetting.of("yoo_hide_phone", false);
 
@@ -93,6 +99,13 @@ public final class SharedSettings {
 
     public static final BooleanSetting yooAlwaysHd =
         BooleanSetting.of("yoo_always_hd", false);
+
+    public static final BooleanSetting yooNoTail =
+        BooleanSetting.of("yoo_no_tail", false);
+
+    /** Sticker size, default 14 (scale = value / 14). */
+    public static final IntSetting yooStickerSize =
+        IntSetting.of("yoo_sticker_size", 14);
 
     /** Seconds to seek on double tap in the video player: 5, 10 or 20. */
     public static final IntSetting yooSeekSeconds =
