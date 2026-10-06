@@ -12738,6 +12738,20 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return true;
     }
 
+    /** Re-applies YooGram settings to an already created chat list (no restart needed). */
+    public void yooApplySettings() {
+        if (actionBar != null && folderId == 0 && communityId == 0 && !onlySelect) {
+            actionBar.setTitle(new SpannableStringBuilder(org.telegram.yoogram.YooAppearance.headerTitle(currentAccount)), statusDrawable);
+            actionBar.setYooCenterTitle(org.telegram.utils.settings.SharedSettings.yooHeaderCenter.get());
+            actionBar.requestLayout();
+            actionBar.invalidate();
+        }
+        updateStoriesVisibility(false);
+        if (filterTabsView != null) {
+            updateFilterTabs(true, false);
+        }
+    }
+
     public void updateStoriesVisibility(boolean animated) {
         if (dialogStoriesCell == null || storiesVisibilityAnimator != null || rightSlidingDialogContainer != null && rightSlidingDialogContainer.hasFragment() || searchIsShowed || actionBar == null || actionBar.isActionModeShowed() || onlySelect) {
             return;

@@ -208,6 +208,7 @@ public abstract class YooSettingsPage extends BaseFragment {
                     ((TextCheckCell) view).setChecked(value);
                 }
                 refreshPreviews();
+                applyLive();
                 if (row.restartHint) {
                     BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_infotip, org.telegram.messenger.LocaleController.getString(R.string.YooRestartHint)).show();
                 }
@@ -221,6 +222,7 @@ public abstract class YooSettingsPage extends BaseFragment {
                 builder.setTitle(row.title);
                 builder.setItems(row.options, (dialog, which) -> {
                     row.intSetting.set(row.optionValues[which]);
+                    applyLive();
                     adapter.notifyItemChanged(position);
                     refreshPreviews();
                 });
@@ -235,6 +237,18 @@ public abstract class YooSettingsPage extends BaseFragment {
                 break;
             default:
                 break;
+        }
+    }
+
+    /** Pushes the changed settings into screens that are already open (chat list). */
+    private void applyLive() {
+        if (parentLayout == null) {
+            return;
+        }
+        for (BaseFragment fragment : parentLayout.getFragmentStack()) {
+            if (fragment instanceof org.telegram.ui.DialogsActivity) {
+                ((org.telegram.ui.DialogsActivity) fragment).yooApplySettings();
+            }
         }
     }
 

@@ -124,6 +124,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
 
     private boolean supportsHolidayImage;
     private SnowflakesEffect snowflakesEffect;
+    private SnowflakesEffect yooSnowEffect;
     private FireworksEffect fireworksEffect;
     private Paint.FontMetricsInt fontMetricsInt;
     private boolean manualStart;
@@ -438,10 +439,11 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         }
         if (supportsHolidayImage && !titleOverlayShown && org.telegram.utils.settings.SharedSettings.yooForceSnow.get() && Theme.getCurrentHolidayDrawable() == null
             && (child == titleTextView[0] || child == titleTextView[1] || child == titlesContainer && useContainerForTitles)) {
-            if (snowflakesEffect == null) {
-                snowflakesEffect = new SnowflakesEffect(0);
+            if (yooSnowEffect == null) {
+                yooSnowEffect = new SnowflakesEffect(0);
+                yooSnowEffect.ignoreLiteMode = true;
             }
-            snowflakesEffect.onDraw(this, canvas);
+            yooSnowEffect.onDraw(this, canvas);
         }
         if (clip) {
             canvas.restore();
