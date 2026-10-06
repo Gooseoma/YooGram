@@ -20,9 +20,9 @@ public class YooAppearanceSettings extends YooSettingsPage {
     protected void buildRows(ArrayList<Row> rows) {
         rows.add(Row.header(LocaleController.getString(R.string.YooSecChatList)));
         rows.add(Row.toggle(LocaleController.getString(R.string.YooForceSnow), SharedSettings.yooForceSnow));
-        rows.add(Row.toggleRestart(LocaleController.getString(R.string.YooHeaderCenter), SharedSettings.yooHeaderCenter));
-        rows.add(Row.toggleRestart(LocaleController.getString(R.string.YooHideStories), SharedSettings.yooHideStories));
-        rows.add(Row.toggleRestart(LocaleController.getString(R.string.YooHideFolderCounters), SharedSettings.yooHideFolderCounters));
+        rows.add(Row.toggle(LocaleController.getString(R.string.YooHeaderCenter), SharedSettings.yooHeaderCenter));
+        rows.add(Row.toggle(LocaleController.getString(R.string.YooHideStories), SharedSettings.yooHideStories));
+        rows.add(Row.toggle(LocaleController.getString(R.string.YooHideFolderCounters), SharedSettings.yooHideFolderCounters));
         rows.add(Row.toggle(LocaleController.getString(R.string.YooNoFolderSwipe), SharedSettings.yooNoFolderSwipe));
         rows.add(Row.choice(
             LocaleController.getString(R.string.YooHeaderText),

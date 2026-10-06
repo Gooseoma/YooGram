@@ -82,6 +82,9 @@ public class SnowflakesEffect {
 
     private int color;
 
+    /** YooGram forced snow: draw even when lite mode switched chat backgrounds off. */
+    public boolean ignoreLiteMode;
+
     public SnowflakesEffect(int viewType) {
         this.viewType = viewType;
         this.maxCount = viewType == 0 ? 100 : 300;
@@ -162,7 +165,7 @@ public class SnowflakesEffect {
     }
 
     public void onDraw(View parent, Canvas canvas) {
-        if (parent == null || canvas == null || !LiteMode.isEnabled(LiteMode.FLAG_CHAT_BACKGROUND)) {
+        if (parent == null || canvas == null || !ignoreLiteMode && !LiteMode.isEnabled(LiteMode.FLAG_CHAT_BACKGROUND)) {
             return;
         }
 
